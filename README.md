@@ -1,6 +1,6 @@
 # 3D printing the Earth's tectonic plates
 
-This project aims to convert the Earth's tectonic plates into 3d-printed models. We adopt [Peter Bird's plate models](https://doi.org/10.1029/2001GC000252) and the plate polygons available in [https://github.com/fraxen/tectonicplates](https://github.com/fraxen/tectonicplates).
+This project aims to convert the Earth's tectonic plates into 3d-printed models. We adopt [Peter Bird's plate model](https://doi.org/10.1029/2001GC000252) and the derived plate polygons available in [https://github.com/fraxen/tectonicplates](https://github.com/fraxen/tectonicplates).
 
 ## Step 1: Coordinate conversion
 
