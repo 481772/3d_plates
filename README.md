@@ -2,7 +2,9 @@
 
 This project aims to convert the Earth's tectonic plates into 3d-printed models. We adopt [Peter Bird's plate models](https://doi.org/10.1029/2001GC000252) and the plate polygons available in [https://github.com/fraxen/tectonicplates](https://github.com/fraxen/tectonicplates).
 
-## Step 1: `3d_plate.py` turns longitude and latitude coordinates of [the point set forming plate polygons](https://github.com/fraxen/tectonicplates/blob/master/original/PB2002_plates.dig.txt) (or local file, [plate_coordinates.txt](https://github.com/481772/3d_plates/blob/main/plate_coordinates.txt))  into cartesian coordinates (x, y, z):
+## Step 1: Coordinate conversion
+
+`3d_plate.py` turns longitude and latitude coordinates of [the point set forming plate polygons](https://github.com/fraxen/tectonicplates/blob/master/original/PB2002_plates.dig.txt) (or local file, [plate_coordinates.txt](https://github.com/481772/3d_plates/blob/main/plate_coordinates.txt))  into cartesian coordinates (x, y, z):
 
 $$
 \begin{split}
