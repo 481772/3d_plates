@@ -177,8 +177,12 @@ for i in lines:
         #the last coord in each plate repeats
         if str(x)+' '+str(y)+' '+str(z)+'\n' == names_and_coords[-1]:
             del names_and_coords[-1]
+        
+        #to get around out of list index error
+        only_coords.insert(0, " ")
         if str(x)+' '+str(y)+' '+str(z)+'\n' == only_coords[-1]:
             del only_coords[-1]
+        del only_coords[0]
         
         names_and_coords.append(str(x)+' '+str(y)+' '+str(z)+'\n')
         only_coords.append(str(x)+' '+str(y)+' '+str(z)+'\n')
@@ -198,20 +202,25 @@ for i in lines:
     else:
         i = "".join(i)
         names_and_coords.append(i)
-        #need to delete \n in the lines with plate names so that it matches the name element in each sublist
-        if line_no == plate_name_list[num_plates][1]:
-            text_file = open(plate_name_list[num_plates-1][0], "w")
-            n = text_file. write(str("".join(only_coords)))
-            text_file. close()
-            #print list with [num_plates-1][0] file name
-            only_coords = []
-            #dump onlycoords
+        if num_plates < len(plate_name_list):
+            #to get around list index out of range in the following
+            if line_no == plate_name_list[num_plates][1]:
+                file_name = plate_name_list[num_plates-1][0] + ".txt"
+                text_file = open(file_name, "w")
+                n = text_file. write(str("".join(only_coords)))
+                text_file. close()
+                #print list with [num_plates-1][0] file name
+                only_coords = []
+                #dump onlycoords
+                num_plates += 1
     line_no += 1
 #the cycle right above to print only_coords to a file with a specific name
 #fails on the last plate, because num_plates in [num_plates][1] will 
 #not be able to trigger, as there are no more plate names to read
 #so the plate gets printed, without conditions, after lines runs out of elements
-text_file = open(plate_name_list[num_plates-1][0], "w")
+
+file_name = plate_name_list[num_plates-1][0] + ".txt"
+text_file = open(file_name, "w")
 n = text_file. write(str("".join(only_coords)))
 text_file. close()
         
