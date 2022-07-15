@@ -13,4 +13,5 @@ y &= r\sin\theta\sin\phi \\
 z &= r\cos\theta,
 \end{split}
 $$
+
 where $r$ is the radius of an assumed sphere (e.g., 10 cm).
