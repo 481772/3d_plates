@@ -139,7 +139,7 @@ n = text_file. write(str("".join(only_coords)))
 text_file. close()
         
         
-text_file = open("radian_plate_coords", "w")
+text_file = open("cartesian_plate_coords", "w")
 n = text_file. write(str("".join(names_and_coords)))
 text_file. close()
 #how to output files
