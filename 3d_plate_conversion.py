@@ -83,11 +83,7 @@ for i in lines:
 
         if longitude < 0:
             longitude = 360 + longitude 
-        if latitude > 0:
-            colatitude = 90 - latitude
-        if latitude < 0:
-            colatitude = 180 + latitude
-        
+        colatitude = 90 - latitude
 
         x = 10 * sin(radians(colatitude)) * cos(radians(longitude))
         y = 10 * sin(radians(colatitude)) * sin(radians(longitude))
@@ -139,7 +135,7 @@ n = text_file. write(str("".join(only_coords)))
 text_file. close()
         
         
-text_file = open("cartesian_plate_coords", "w")
+text_file = open("cartesian_plate_coords.txt", "w")
 n = text_file. write(str("".join(names_and_coords)))
 text_file. close()
 #how to output files
