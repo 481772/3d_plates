@@ -100,9 +100,10 @@ def check_sign():
     global lat_float
     global sign #[long, lat]
     if sign[0] == '-':
-        long_float = 2*pi -long_float
-    if sign[1] == '-':
-        lat_float = pi - lat_float 
+        long_float = 2*pi + long_float
+    #longitude should be subtracted from 2pi (both rads) when longitude is negative
+    lat_float = pi - lat_float 
+    #latitude to colatitude by doing pi- latitude, regardless of sign
     sign = []
     
 
