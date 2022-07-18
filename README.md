@@ -9,7 +9,7 @@ This project aims to convert the Earth's tectonic plates into 3d-printed models.
 $$
 \begin{split}
 \theta &= \frac{\pi}{180}(90^{\circ}-\text{lat}^{\circ}) \\
-\phi   &= \frac{\pi}{180}\text{lon}^{\circ} \textrm{ if lon}^{\circ} \ge 0^{\circ}, \quad \frac{\pi}{180}(180^{\circ}-\text{lon}^{\circ}) \textrm{ if lon}^{\circ} < 0^{\circ} \\
+\phi   &= \frac{\pi}{180}\text{lon}^{\circ} \textrm{ if lon}^{\circ} \ge 0^{\circ}, \quad \frac{\pi}{180}(360^{\circ}+\text{lon}^{\circ}) \textrm{ if lon}^{\circ} < 0^{\circ} \\
 x &= r\sin\theta\cos\phi \\
 y &= r\sin\theta\sin\phi \\
 z &= r\cos\theta,
