@@ -1,3 +1,5 @@
+# is sorting needed?
+
 import numpy as np
 from math import pi, sin, cos, radians
 
@@ -16,12 +18,7 @@ lines = input_file.readlines()
 
 longitude = []
 latitude = []
-long_float = 0.0
-lat_float = 0.0
-exponent = []
-var_1 = 0
-var_2 = 0
-sign = []
+colatitude = 0.0
 
 names_and_coords = []
 only_coords = []
@@ -39,74 +36,6 @@ def Convert(string):
     list1[:0]=string
     return list1
     
-
-def trim_coord():
-    global longitude 
-    global latitude
-    global exponent
-    global sign
-    
-    exponent.insert(0, int(longitude[-1]))
-    sign.insert(0, longitude[0])
-    longitude.pop(0)
-    for i in range (0,4):
-        longitude.pop(-1)
-
-    exponent.insert(1, int(latitude[-1]))
-    sign.insert(0, latitude[0])
-    latitude.pop(0)
-    for i in range (0,4):
-        latitude.pop(-1)
-  
-
-
-
-def deg_to_rad():
-    global longitude 
-    global latitude
-    global long_float
-    global lat_float
-    global exponent
-
-    long_float = float("".join(longitude))
-    #longitude list joined to get number, float because python is rounding 
-    for i in range (0, exponent[0]):
-        long_float = long_float * 10
-    long_float = radians(long_float)
-    #longitude angle should be between 0 and 2pi. if rad value is over ~6.3 (2pi), then the number needs to be changed in accordiance to its sign
-    # if long_float < 0: 
-        
-    # elif long_float > 2 * pi:
-
-
-    lat_float = float("".join(latitude))
-    #lat list joined to get number
-    for i in range (0, exponent[1]):
-        lat_float = lat_float * 10
-    lat_float = radians(lat_float)
-    exponent = []
-    #longitude angle should be between 0 and 180 (pi rad). if rad value is over [pi], then the number needs to be changed in accordiance to its sign
-    #this part might not matter
-    
-    
-    # if lat_float < 0: 
-    #     while lat_float < 0:
-    #     lat_float
-    # elif lat_float > pi:
-
-    
-def check_sign():
-    global long_float
-    global lat_float
-    global sign #[long, lat]
-    if sign[0] == '-':
-        long_float = 2*pi + long_float
-    #longitude should be subtracted from 2pi (both rads) when longitude is negative
-    lat_float = pi - lat_float 
-    #latitude to colatitude by doing pi- latitude, regardless of sign
-    sign = []
-    
-
 
 
 lines = Convert(lines)
@@ -149,31 +78,20 @@ for i in lines:
         #print(latitude)
         #list of lat coord
 
+        longitude = float("".join(longitude))
+        latitude = float("".join(latitude))
 
-        trim_coord()
-        # print("longitude sign + exp and long after removing exp, space, sign")
-        # print(sign[0])
-        # print(exponent[0])
-        # print(longitude)
-        # print("latitude sign + exp and long after removing exp, space, sign")
-        # print(sign[1])
-        # print(exponent[1])
-        # print(latitude)
+        if longitude < 0:
+            longitude = 360 + longitude 
+        if latitude > 0:
+            colatitude = 90 - latitude
+        if latitude < 0:
+            colatitude = 180 + latitude
+        
 
-
-        deg_to_rad()
-        # print("longitude and latitude in radians")
-        # print(long_float)
-        # print(lat_float)
-
-        check_sign()
-        # print("after accounting for signs")
-        # print(long_float)
-        # print(lat_float)
-
-        x = 10 * sin(lat_float) * cos(long_float)
-        y = 10 * sin(lat_float) * sin(long_float)
-        z = 10 * cos(lat_float)
+        x = 10 * sin(radians(colatitude)) * cos(radians(longitude))
+        y = 10 * sin(radians(colatitude)) * sin(radians(longitude))
+        z = 10 * cos(radians(colatitude))
 
         #the last coord in each plate repeats
         if str(x)+' '+str(y)+' '+str(z)+'\n' == names_and_coords[-1]:
@@ -191,12 +109,7 @@ for i in lines:
 
         longitude = []
         latitude = []
-        long_float = 0.0
-        lat_float = 0.0
-        exponent = []
-        var_1 = 0
-        var_2 = 0
-        sign = []
+        colatitude = 0.0
         # print (names_and_coords[-1])
         # print(only_coords[-1])
         # print("-----------------------------------------------")
@@ -225,7 +138,6 @@ text_file = open(file_name, "w")
 n = text_file. write(str("".join(only_coords)))
 text_file. close()
         
-
         
 text_file = open("radian_plate_coords", "w")
 n = text_file. write(str("".join(names_and_coords)))
